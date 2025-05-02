@@ -7,11 +7,11 @@ public:
             lSum+=cardPoints[i];
             maxSum=lSum;
         }
-        int minidx=n-1;
+        int rightIdx=n-1;
         for(int i=k-1;i>=0;i--){
             lSum=lSum-cardPoints[i];
-            rSum=rSum+cardPoints[minidx];
-            minidx--;
+            rSum=rSum+cardPoints[rightIdx];
+            rightIdx--;
             maxSum=max(maxSum,lSum+rSum);
         }
         return maxSum;
