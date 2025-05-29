@@ -8,11 +8,12 @@ public:
             while (!st.empty() && st.top() < nums2[i]) {
                 st.pop();
             }
-            if (st.empty() || st.top() < nums2[i])
+            if (st.empty())
                 mp[nums2[i]] = -1;
-            else
+            else {
                 mp[nums2[i]] = st.top();
-            st.push(nums2[i]);
+            }
+            st.push(nums2[i]);//if the smaller will come push into stack may be this would be the answer for left sider;
         }
         vector<int> solution;
         for (int i = 0; i < nums1.size(); i++) {
