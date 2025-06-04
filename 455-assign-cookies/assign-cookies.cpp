@@ -10,10 +10,8 @@ public:
             if(g[i]<=s[j]){
                 ans++;
                 i++;
-                j++;
-            }else{
-                j++;
-            }
+                }
+            j++;
         }
         return ans;
     }
