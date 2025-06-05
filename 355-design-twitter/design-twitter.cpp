@@ -21,7 +21,6 @@ public:
         for (int uid : users) {
             for (auto &tweet : tweets[uid]) {
                 pq.push(tweet);
-                if (pq.size() > 50) pq.pop(); // optional optimization
             }
         }
 
