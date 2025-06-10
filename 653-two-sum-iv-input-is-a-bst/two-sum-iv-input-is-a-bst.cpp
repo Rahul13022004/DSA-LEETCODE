@@ -22,13 +22,15 @@ public:
         vector<int>sort;
             inorder(root,sort);
             int n = sort.size();
-            for(int i = 0;i<n;i++){
-                for(int j = i+1;j<n;j++){
-                    if(sort[i]+sort[j]==k){
-                        return true;
-                    }
-                }
-            }
+             int i=0;
+             int j=n-1;
+             while(i<j){
+                if(sort[i]+sort[j]==k){
+                    return true;
+                }else if(sort[i]+sort[j]<k){
+                    i++;
+                }else j--;
+             }
             return false;
     }
 };
