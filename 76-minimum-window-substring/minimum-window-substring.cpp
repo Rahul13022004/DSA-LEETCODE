@@ -1,32 +1,41 @@
 class Solution {
 public:
-    string minWindow(string s, std::string t) {
+    string minWindow(string s, string t) {
         if (s.empty() || t.empty() || s.length() < t.length()) {
             return "";
         }
 
-        vector<int> map(128, 0);
-        int count = t.length();
-        int start = 0, end = 0, minLen = INT_MAX, startIndex = 0;
-
+        vector<int> map(128, 0); // ASCII character map
         for (char c : t) {
-            map[c]++;
+            map[c]++; // Count frequency of each char in t
         }
 
+        int count = t.length(); // Number of characters needed
+        int start = 0, end = 0;
+        int minLen = INT_MAX;
+        int startIndex = 0;
+
         while (end < s.length()) {
-            if (map[s[end++]]-- > 0) {
+            // If s[end] is in t and needed, reduce count
+            if (map[s[end]] > 0) {
                 count--;
             }
+            map[s[end]]--; // Decrease the frequency
+            end++;
 
+            // When all characters from t are included in the current window
             while (count == 0) {
+                // Update minimum window
                 if (end - start < minLen) {
-                    startIndex = start;
                     minLen = end - start;
+                    startIndex = start;
                 }
 
-                if (map[s[start++]]++ == 0) {
-                    count++;
+                map[s[start]]++; // Slide the window
+                if (map[s[start]] > 0) {
+                    count++; // A required char was removed
                 }
+                start++;
             }
         }
 
